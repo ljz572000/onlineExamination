@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Java代码在线编译及练习系统</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="https://v3.bootcss.com/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="https://v3.bootcss.com/examples/justified-nav/justified-nav.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="https://v3.bootcss.com/assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="https://cdn.bootcss.com/eonasdan-bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+    <link href="https://cdn.bootcss.com/eonasdan-bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/moment.js/2.24.0/locale/zh-cn.js"></script>
+    <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://cdn.bootcss.com/eonasdan-bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- The justified navigation menu is meant for single line per list item.
+         Multiple lines will require custom code not provided by Bootstrap. -->
+    <div class="masthead">
+        <h3 class="text-muted">Java代码在线编译及练习系统</h3>
+        <nav>
+            <ul class="nav nav-justified">
+                <li><a href="" th:href="@{/tea/index}">首页</a></li>
+                <li><a href="" th:href="@{/tea/commitquestion}">出题</a></li>
+                <li class="active"><a href="#">出卷</a></li>
+                <li><a href="" th:href="@{/tea/lookpaper}">查看学生考卷</a></li>
+                <li><a href="" th:href="@{/tea/scoreexport}">成绩批量导出</a></li>
+                <li><a href="" th:href="@{/tea/lookscore}">查看成绩</a></li>
+                <li><a href="" th:href="@{/tea/repairwd}">修改密码</a></li>
+                <li><a href="#" th:href="@{/}">退出系统</a></li>
+            </ul>
+        </nav>
+    </div>
+
+
+<!--    <div class="text-center pt-5" style="margin-top: 30px">-->
+<!--        <button type="button" class="btn btn-lg btn-primary mr-lg-3 " style="margin-right: 22px;">第一题</button>-->
+<!--        <button type="button" class="btn btn-lg btn-primary mr-lg-3 " style="margin-right: 22px;">第二题</button>-->
+<!--        <button type="button" class="btn btn-lg btn-primary mr-lg-3 " style="margin-right: 22px;">第三题</button>-->
+<!--        <button type="button" class="btn btn-lg btn-primary mr-lg-3 " style="margin-right: 22px;">第四题</button>-->
+<!--        <button type="button" class="btn btn-lg btn-primary mr-lg-3 " style="margin-right: 22px;">第五题</button>-->
+<!--    </div>-->
+
+
+
+    <form action="" th:action="@{/tea/commitpapers}" method="post" style="margin-top: 27px;">
+        <h3>--- 基本信息 ---</h3>
+        <div class="form-group" style="margin-top: 27px;">
+            <label for="testname">考试名</label>
+            <input type="text" id="testname" name="testname" class="form-control form-check-input" required>
+        </div>
+        <div class="form-group">
+            <label for="cno" >考试班级号</label>
+            <input type="text" id="cno" name="cno" class="form-control form-check-input" required>
+        </div>
+        <div class="form-group" data-provide="datepicker">
+            <label for="startdate">考试开始时间</label>
+            <input type="date" id="startdate" name="startdate" class="form-control form-check-input" required>
+        </div>
+
+        <div class="form-group">
+            <label for="enddate">考试结束时间</label>
+            <input type="date" id="enddate" name="enddate" class="form-control form-check-input" required>
+        </div>
+        <div class="form-group">
+            <label for="testtime">考试时长</label>
+            <input type="time" id="testtime" name="testtime" class="form-control form-check-input" required>
+        </div>
+        <h3 style="margin: 27px  auto;">-&#45;&#45; 题目 1 信息 -&#45;&#45;</h3>
+
+        <div class="form-group" style="margin-top: 27px;">
+            <label for="qno_0">题目一 题号</label>
+            <input type="text" id="qno_0" name="qno_0" class="form-control form-check-input" required>
+        </div>
+        <div class="form-group" style="margin-top: 27px;">
+            <label for="qscore_0">题目一 分值</label>
+            <input type="text" id="qscore_0" name="qscore_0" class="form-control form-check-input" required>
+        </div>
+
+        <h3 style="margin: 27px  auto;">-&#45;&#45; 题目 2 信息 -&#45;&#45;</h3>
+        <div class="form-group" style="margin-top: 27px;">
+            <label for="qno_1">题目二 题号</label>
+            <input type="text" id="qno_1" name="qno_1" class="form-control form-check-input" required>
+        </div>
+        <div class="form-group" style="margin-top: 27px;">
+            <label for="qscore_1">题目二 分值</label>
+            <input type="text" id="qscore_1" name="qscore_1" class="form-control form-check-input" required>
+        </div>
+        <h3 style="margin: 27px  auto;">-&#45;&#45; 题目 3 信息 -&#45;&#45;</h3>
+        <div class="form-group" style="margin-top: 27px;">
+            <label for="qno_2">题目三 题号</label>
+            <input type="text" id="qno_2" name="qno_2" class="form-control form-check-input" required>
+        </div>
+        <div class="form-group" style="margin-top: 27px;">
+            <label for="qscore_2">题目三 分值</label>
+            <input type="text" id="qscore_2" name="qscore_2" class="form-control form-check-input" required>
+        </div>
+        <h3 style="margin: 27px  auto;">-&#45;&#45; 题目 4 信息 -&#45;&#45;</h3>
+        <div class="form-group" style="margin-top: 27px;">
+            <label for="qno_3">题目四 题号</label>
+            <input type="text" id="qno_3" name="qno_3" class="form-control form-check-input" required>
+        </div>
+        <div class="form-group" style="margin-top: 27px;">
+            <label for="qscore_3">题目四 分值</label>
+            <input type="text" id="qscore_3" name="qscore_3" class="form-control form-check-input" required>
+        </div>
+        <h3 style="margin: 27px  auto;">-&#45;&#45; 题目 5 信息 -&#45;&#45;</h3>
+
+        <div class="form-group" style="margin-top: 27px;">
+            <label for="qno_4">题目五 题号</label>
+            <input type="text" id="qno_4" name="qno_4" class="form-control form-check-input" required>
+        </div>
+        <div class="form-group" style="margin-top: 27px;">
+            <label for="qscore_4">题目五 分值</label>
+            <input type="text" id="qscore_4" name="qscore_4" class="form-control form-check-input" required>
+        </div>
+
+
+<!--        <h3 style="margin: 27px  auto;">-&#45;&#45; 题目 1 信息 -&#45;&#45;</h3>-->
+<!--        <div class="form-group" >-->
+<!--            <label for="qname_1">题目 1 题目名称</label>-->
+<!--            <input type="text" id="qname_1" name="qname_1" class="form-control">-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="content_1" >题目 1 题目描述</label>-->
+<!--            <textarea type="text" id="content_1" name="content_1" class="form-control" rows="4"></textarea>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="inputrule_1">题目 1 程序输入说明</label>-->
+<!--            <input type="text" id="inputrule_1" name="inputrule_1" class="form-control">-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="outputrule_1">题目 1 程序输出说明</label>-->
+<!--            <input type="text" id="outputrule_1" name="outputrule_1" class="form-control">-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="inputexample_1">题目 1 程序输入样例</label>-->
+<!--            <input type="text" id="inputexample_1" name="inputexample_1" class="form-control">-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="outputexample_1">题目 1 程序输入样例</label>-->
+<!--            <input type="text" id="outputexample_1" name="outputexample_1" class="form-control">-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="rating_1">rating</label>-->
+<!--            <select name="rating_1" class="form-control" id="rating_1" required>-->
+<!--                <option value="simple">简单</option>-->
+<!--                <option value="medium">中等</option>-->
+<!--                <option value="difficult">难</option>-->
+<!--            </select>-->
+<!--        </div>-->
+
+
+
+<!--        <h3 style="margin: 27px  auto;">-&#45;&#45; 题目 2 信息 -&#45;&#45;</h3>-->
+<!--        <div class="form-group">-->
+<!--            <label for="qname_2">题目 2 题目名称</label>-->
+<!--            <input type="text" id="qname_2" name="qname_2" class="form-control">-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="content_2" >题目 2 题目描述</label>-->
+<!--            <textarea type="text" id="content_2" name="content_2" class="form-control" rows="4"></textarea>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="inputrule_2">题目 2 程序输入说明</label>-->
+<!--            <input type="text" id="inputrule_2" name="inputrule_2" class="form-control">-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="outputrule_2">题目 2 程序输出说明</label>-->
+<!--            <input type="text" id="outputrule_2" name="outputrule_2" class="form-control">-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="inputexample_2">题目 2 程序输入样例</label>-->
+<!--            <input type="text" id="inputexample_2" name="inputexample_2" class="form-control">-->
+<!--        </div>-->
+
+<!--        <div class="form-group">-->
+<!--            <label for="outputexample_2">程序输出样例</label>-->
+<!--            <input type="text" id="outputexample_2" name="outputexample_2" class="form-control">-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="rating_2">rating</label>-->
+<!--            <select name="rating_2" class="form-control" id="rating_2" required>-->
+<!--                <option value="simple">简单</option>-->
+<!--                <option value="medium">中等</option>-->
+<!--                <option value="difficult">难</option>-->
+<!--            </select>-->
+<!--        </div>-->
+
+
+
+<!--        <h3 style="margin: 27px  auto;">-&#45;&#45; 题目 3 信息 -&#45;&#45;</h3>-->
+<!--        <div class="form-group">-->
+<!--            <label for="qname_3">题目 3 题目名称</label>-->
+<!--            <input type="text" id="qname_3" name="qname_3" class="form-control">-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="content_3" >题目 3 题目描述</label>-->
+<!--            <textarea type="text" id="content_3" name="content_3" class="form-control" rows="4"></textarea>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="inputrule_3">题目 3 程序输入说明</label>-->
+<!--            <input type="text" id="inputrule_3" name="inputrule_3" class="form-control">-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="outputrule_3">题目 3 程序输出说明</label>-->
+<!--            <input type="text" id="outputrule_3" name="outputrule_3" class="form-control">-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="inputexample_3">题目 3 程序输入样例</label>-->
+<!--            <input type="text" id="inputexample_3" name="inputexample_3" class="form-control">-->
+<!--        </div>-->
+
+<!--        <div class="form-group">-->
+<!--            <label for="outputexample_3">题目 3 程序输出样例</label>-->
+<!--            <input type="text" id="outputexample_3" name="outputexample_3" class="form-control">-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="rating_3">rating</label>-->
+<!--            <select name="rating_3" class="form-control" id="rating_3" required>-->
+<!--                <option value="simple">简单</option>-->
+<!--                <option value="medium">中等</option>-->
+<!--                <option value="difficult">难</option>-->
+<!--            </select>-->
+<!--        </div>-->
+
+
+<!--        <h3 style="margin: 27px  auto;">-&#45;&#45; 题目 4 信息 -&#45;&#45;</h3>-->
+<!--        <div class="form-group">-->
+<!--            <label for="qname_4">题目 4 题目名称</label>-->
+<!--            <input type="text" id="qname_4" name="qname_4" class="form-control">-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="content_4" >题目 4 题目描述</label>-->
+<!--            <textarea type="text" id="content_4" name="content_4" class="form-control" rows="4"></textarea>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="inputrule_4">题目 4 程序输入说明</label>-->
+<!--            <input type="text" id="inputrule_4" name="inputrule_4" class="form-control">-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="outputrule_4">题目 4 程序输出说明</label>-->
+<!--            <input type="text" id="outputrule_4" name="outputrule_4" class="form-control">-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="inputexample_4">题目 4 程序输入样例</label>-->
+<!--            <input type="text" id="inputexample_4" name="inputexample_4" class="form-control">-->
+<!--        </div>-->
+
+<!--        <div class="form-group">-->
+<!--            <label for="outputexample_4">题目 4 程序输出样例</label>-->
+<!--            <input type="text" id="outputexample_4" name="outputexample_4" class="form-control">-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="rating_4">rating</label>-->
+<!--            <select name="rating_4" class="form-control" id="rating_4" required>-->
+<!--                <option value="simple">简单</option>-->
+<!--                <option value="medium">中等</option>-->
+<!--                <option value="difficult">难</option>-->
+<!--            </select>-->
+<!--        </div>-->
+
+
+<!--      <h3 style="margin: 27px  auto;">-&#45;&#45; 题目 5 信息 -&#45;&#45;</h3>-->
+<!--        <div class="form-group">-->
+<!--            <label for="qname_5">题目 5 名称</label>-->
+<!--            <input type="text" id="qname_5" name="qname_5" class="form-control">-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="content_5" >题目 5 描述</label>-->
+<!--            <textarea type="text" id="content_5" name="content_5" class="form-control" rows="4"></textarea>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="inputrule_5">题目 5 程序输入说明</label>-->
+<!--            <input type="text" id="inputrule_5" name="inputrule_5" class="form-control">-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="outputrule_5">题目 5 程序输出说明</label>-->
+<!--            <input type="text" id="outputrule_5" name="outputrule_5" class="form-control">-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="inputexample_5">题目 5 程序输入样例</label>-->
+<!--            <input type="text" id="inputexample_5" name="inputexample_5" class="form-control">-->
+<!--        </div>-->
+
+<!--        <div class="form-group">-->
+<!--            <label for="outputexample_5">程序输出样例</label>-->
+<!--            <input type="text" id="outputexample_5" name="outputexample_5" class="form-control">-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="rating_5">rating</label>-->
+<!--            <select name="rating_5" class="form-control" id="rating_5" required>-->
+<!--                <option value="simple">简单</option>-->
+<!--                <option value="medium">中等</option>-->
+<!--                <option value="difficult">难</option>-->
+<!--            </select>-->
+<!--        </div>-->
+
+        <div class="alert alert-warning" role="alert">
+            请认真检查后点击提交！！！
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary btn-lg ">
+        </div>
+
+    </form>
+
+
+</div>
+</body>
+</html>

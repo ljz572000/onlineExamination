@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Java代码在线编译及练习系统</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="https://v3.bootcss.com/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="https://v3.bootcss.com/examples/justified-nav/justified-nav.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="https://v3.bootcss.com/assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- The justified navigation menu is meant for single line per list item.
+         Multiple lines will require custom code not provided by Bootstrap. -->
+    <div class="masthead">
+        <h3 class="text-muted">Java代码在线编译及练习系统</h3>
+        <nav>
+            <ul class="nav nav-justified">
+                <li><a href="" th:href="@{/tea/index}">首页</a></li>
+                <li class="active"><a href="#">出题</a></li>
+                <li><a href="" th:href="@{/tea/commitpaper}">出卷</a></li>
+                <li><a href="" th:href="@{/tea/lookpaper}">查看学生考卷</a></li>
+                <li><a href="" th:href="@{/tea/scoreexport}">成绩批量导出</a></li>
+                <li><a href="" th:href="@{/tea/lookscore}">查看成绩</a></li>
+                <li><a href="" th:href="@{/tea/repairwd}">修改密码</a></li>
+                <li><a href="#" th:href="@{/}">退出系统</a></li>
+            </ul>
+        </nav>
+    </div>
+
+
+    <!--    <form class="pt-2" action="" th:action="@{/tea/commitquestions}" method="post" role="form">-->
+    <!--        <br>-->
+    <!--        <h3 class="text-center"> 欢迎使用本系统 </h3>-->
+    <!--        <hr class="text-center"></hr>-->
+    <!--        <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>-->
+    <!--        <div>-->
+    <!--            <input type="text" placeholder="请输入编号" class="form-control" name="id" required>-->
+    <!--            <br>-->
+    <!--            <input type="password" placeholder="请输入密码" class="form-control" name="password" required/>-->
+    <!--            <br>-->
+    <!--            <select name="user_type" class="form-control" required>-->
+    <!--                <option value="students">学生</option>-->
+    <!--                <option value="teachers">教师</option>-->
+    <!--                <option value="admins">管理员</option>-->
+    <!--            </select>-->
+    <!--            <br>-->
+    <!--            <div class="text-center">-->
+    <!--                <input type="submit" value="登录" class="btn btn-primary mb-5 w-100 font-weight-bolder"/>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </form>-->
+
+    <table class="table table-striped" style="margin-top: 27px;">
+        <tbody>
+        <tr>
+            <td>题目描述</td>
+        </tr>
+        <tr>
+            <td th:text="${question.content}">题目描述</td>
+        </tr>
+        <tr>
+            <td>程序输入说明</td>
+        </tr>
+        <tr>
+            <td th:text="${question.inputrule}">题目描述</td>
+        </tr>
+        <tr>
+            <td>程序输出说明</td>
+        </tr>
+        <tr>
+            <td th:text="${question.outputrule}">题目描述</td>
+        </tr>
+        <tr>
+            <td>程序输入样例</td>
+        </tr>
+        <tr>
+            <td th:text="${question.inputexample}">题目描述</td>
+        </tr>
+        <tr>
+            <td>程序输出样例</td>
+        </tr>
+        <tr>
+            <td th:text="${question.outputexample}">题目描述</td>
+        </tr>
+        </tbody>
+    </table>
+
+
+
+
+
+</div>
+</body>
+</html>

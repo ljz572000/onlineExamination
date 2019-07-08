@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Java代码在线编译及练习系统</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="https://v3.bootcss.com/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="https://v3.bootcss.com/examples/justified-nav/justified-nav.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]>
+    <script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src=".https://v3.bootcss.com/assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<!--<style>-->
+<!--    body{min-height:300px;padding-top:90px;background: #f6f6f6;}.container{width:98%;padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto}.CodeMirror{min-height:300px;;font-family: Menlo,Monaco,Consolas,"Andale Mono","lucida console","Courier New",monospace;}#textareaCode{}#iframeResult{display: block;overflow: hidden;border:0!important;min-width:100px;width:100%;min-height:300px;background-color:#fff}@media screen and (max-width:768px){#textareaCode{height:300px}.CodeMirror{height:300px;font-family: Menlo,Monaco,Consolas,"Andale Mono","lucida console","Courier New",monospace;}#iframeResult{height:300px}.form-inline{padding:6px 0 2px 0}}.logo h1{background-image:url(/images/logo-domain-white.png);background-repeat:no-repeat;text-indent:-9999px;width:160px;height:39px;margin-top:10px;display:block}-->
+<!--</style>-->
+<div class="container">
+
+    <!-- The justified navigation menu is meant for single line per list item.
+         Multiple lines will require custom code not provided by Bootstrap. -->
+    <div th:fragment="copy">
+        <div class="masthead mb-5">
+            <h3 class="text-muted">Java代码在线编译及练习系统</h3>
+            <nav>
+                <ul class="nav nav-justified">
+                    <li><a href="" th:href="@{/student/index}">首页</a></li>
+                    <li class="active"><a href="#">在线练习</a></li>
+                    <li><a href="" th:href="@{/stu/testpaper}">查看考试</a></li>
+                    <li><a href="" th:href="@{/student/repairpwd}">修改密码</a></li>
+                    <li><a href="#" th:href="@{/}">退出系统</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+
+    <main role="main" class="container" style="
+    margin-top: 27px;">
+        <div>
+            <table class="table table-light table-hover table-bordered">
+                <tbody>
+                <tr>
+                    <td>题目描述</td>
+                </tr>
+                <tr>
+                    <td th:text="${question.content}">题目描述</td>
+                </tr>
+                <tr>
+                    <td>程序输入说明</td>
+                </tr>
+                <tr>
+                    <td th:text="${question.inputrule}">题目描述</td>
+                </tr>
+                <tr>
+                    <td>程序输出说明</td>
+                </tr>
+                <tr>
+                    <td th:text="${question.outputrule}">题目描述</td>
+                </tr>
+                <tr>
+                    <td>程序输入样例</td>
+                </tr>
+                <tr>
+                    <td th:text="${question.inputexample}">题目描述</td>
+                </tr>
+                <tr>
+                    <td>程序输出样例</td>
+                </tr>
+                <tr>
+                    <td th:text="${question.outputexample}">题目描述</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="text-center">
+            <a href="" th:href="@{/student/onlinePratical}" class="btn btn-primary mb-5 w-100 font-weight-bolder">做题</a>
+            <!--            <button >做题</button>-->
+        </div>
+    </main>
+
+</div> <!-- /container -->
+
+
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="https://v3.bootcss.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+</body>
+</html>

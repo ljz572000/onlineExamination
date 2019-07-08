@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Java代码在线编译及练习系统</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="https://v3.bootcss.com/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="https://v3.bootcss.com/examples/justified-nav/justified-nav.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="https://v3.bootcss.com/assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div class="container">
+
+    <div class="masthead">
+        <h3 class="text-muted">Java代码在线编译及练习系统</h3>
+        <nav>
+            <ul class="nav nav-justified">
+                <li><a href="#" th:href="@{/admin/index}">首页</a></li>
+                <li class="active"><a href="#">学生数据批量导入</a></li>
+                <li><a href="" th:href="@{/admin/reset}">重置密码</a></li>
+                <li><a href="" th:href="@{/admin/repairpwd}">修改密码</a></li>
+                <li><a href="" th:href="@{/admin/registered}">教师注册</a></li>
+                <li><a href="#" th:href="@{/}">退出系统</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <main role="main" style="
+    margin-top: 27px;">
+        <div style="color: red" th:if="${msg}">
+    <span th:text="${msg}">
+    </span>
+        </div>
+        <div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="alert alert-warning">
+                                <h4>上传&nbsp;<strong style="color:blue"></strong>学生数据表单
+                                </h4>
+                                <h5><strong>(表单大小限制15M，注意上传excel文件，学生数据格式为第一列：学号，第二列：姓名，第三列：班级号)</strong></h5>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <Form action="" th:action="@{/admin/upload}" method="post" ENCTYPE="multipart/form-data">
+                                <div class="form-group">
+                                    <input class="form-control" type="file" name="files" multiple/>
+                                    <br/>
+                                    <input class="btn btn-primary" type="submit"
+                                           value="上&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;传"/>
+                                </div>
+                            </Form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+</div>
+
+
+</body>
+</html>
