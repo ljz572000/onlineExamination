@@ -27,18 +27,6 @@ public class Testpaper {
     private Date startdate;
     private Date enddate;
     private Time testtime;
-
-    @Transient
     private Integer tno;
-    @Transient
     private Integer gid;
-
-
-    @ManyToOne(targetEntity = Question.class)
-    @JoinColumn(name = "tno")
-    private Teacher question;
-
-    @ManyToOne(targetEntity = Student.class)
-    @JoinColumn(name = "gid")
-    private Grade grade;
 }

@@ -14,16 +14,9 @@ public class Questionstatus {
     private String code;
     private String content;
 
-    @Transient
+//    @Transient
     private Integer qno;
-    @Transient
+//    @Transient
     private Integer sno;
 
-    @ManyToOne(targetEntity = Question.class)
-    @JoinColumn(name = "qno")
-    private Question question;
-
-    @ManyToOne(targetEntity = Student.class)
-    @JoinColumn(name = "sno")
-    private Student student;
 }

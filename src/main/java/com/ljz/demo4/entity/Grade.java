@@ -12,14 +12,14 @@ public class Grade {
     private Integer gid;
     private String gname;
 
-    @OneToMany(mappedBy = "grade")
-    private List<Student> students;
+//    @OneToMany(mappedBy = "grade")
+//    private List<Student> students;
 
-    @Override
-    public String toString() {
-        return "Grade{" +
-                "gid=" + gid +
-                ", gname='" + gname + '\'' +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Grade{" +
+//                "gid=" + gid +
+//                ", gname='" + gname + '\'' +
+//                '}';
+//    }
 }

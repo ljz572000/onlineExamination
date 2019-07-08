@@ -114,7 +114,7 @@ TeacherRepository teacherRepository;
         testpaper.setTestname(testname);
         Teacher teacher = (Teacher) session.getAttribute("Teacher");
         testpaper.setTno(teacher.getTno());
-        testpaper.setCno(cno);
+        testpaper.setGid(cno);
         testpaper.setStartdate(java.sql.Date.valueOf(startdate));
         testpaper.setEnddate(java.sql.Date.valueOf(enddate));
         testpaper.setTesttime(java.sql.Time.valueOf(testtime+":00"));

@@ -28,29 +28,23 @@ public class Demo4ApplicationTests {
     QuesStatusRepo quesStatusRepo;
     @Test
     public void test() {
-        Questionstatus questionstatus = new Questionstatus();
-
-        questionstatus.setQno(questionRepository.findByQno(1).getQno());
-        questionstatus.setSno(studentRepository.findBySno(20160750).getSno());
-
-        questionstatus.setDone(true);
-        questionstatus.setCode("code");
-        questionstatus.setContent("content");
-        quesStatusRepo.save(questionstatus);
-        System.out.println(quesStatusRepo.findAll());
+        Grade grade = new Grade();
+        grade.setGid(2016051);
+        grade.setGname("计算机051班");
+        gradeRepo.save(grade);
     }
     @Test
     public void test2() {
         //添加管理员
-//        Admin admin = new Admin();
-//        admin.setAno(20160750);
-//        String hashed = BCrypt.hashpw("20160750", BCrypt.gensalt());
-//        admin.setPassword(hashed);
-//        admin.setAname("李金洲");
-//        admin.setPhone("88240848");
-//        adminRepo.save(admin);
-           Admin admin = adminRepo.findByAno(20160750);
-        System.out.println(admin);
+        Admin admin = new Admin();
+        admin.setAno(20160750);
+        String hashed = BCrypt.hashpw("20160750", BCrypt.gensalt());
+        admin.setPassword(hashed);
+        admin.setAname("李金洲");
+        admin.setPhone("88240848");
+        adminRepo.save(admin);
+           Admin admin2 = adminRepo.findByAno(20160750);
+        System.out.println(admin2);
 
     }
 
