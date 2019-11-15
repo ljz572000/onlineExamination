@@ -49,15 +49,11 @@ public class AdminController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-
             File convFile = new File(fileNameAndPath.toString());
-
             InputStream input = new FileInputStream(convFile);
             BufferedInputStream bufferedInputStream = new BufferedInputStream(input);
             List<Object> data = EasyExcelFactory.read(bufferedInputStream,new Sheet(1,0));
             input.close();
-
             for (Object a: data) {
                 String row = a.toString();
                 row = row.substring(row.indexOf('[')+1,row.indexOf(']'));
@@ -65,12 +61,10 @@ public class AdminController {
                 Student student = new Student();
                 student.setSno(Integer.parseInt(value[0]));
                 student.setSname(value[1].substring(1));
-                String password = (value[0].substring(4));
+                String password = (value[0]);
                 String hashed = BCrypt.hashpw(password, BCrypt.gensalt());
                 student.setPassword(hashed);
                 student.setGid(Integer.parseInt(value[2].substring(1)));
-
-
                 //如果不存在，save Student
                 if (studentRepository.findBySno(student.getSno()) == null)
                 {
@@ -81,7 +75,6 @@ public class AdminController {
             convFile.delete();
 
         }
-
         model.addAttribute("msg","学生数据成功导入  注意已存在的学生将不会导入");
         return "Admin/bath";
     }

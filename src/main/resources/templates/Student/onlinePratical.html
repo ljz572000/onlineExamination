@@ -50,6 +50,7 @@
                 <li><a href="" th:href="@{/student/index}">首页</a></li>
                 <li class="active"><a href="#">在线练习</a></li>
                 <li><a href="" th:href="@{/stu/testpaper}">查看考试</a></li>
+                <li><a href="" th:href="@{/stu/lookscore}">查看成绩</a></li>
                 <li><a href="" th:href="@{/student/repairpwd}">修改密码</a></li>
                 <li><a href="#" th:href="@{/}">退出系统</a></li>
             </ul>
@@ -65,37 +66,26 @@
         <div class="col-sm-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
-
                         <div class="row">
-<!--                            <div class="col-xs-6">-->
-<!--                                <button type="button" onclick="resetCode()" class="btn btn-default">源代码：</button>-->
-<!--                            </div>-->
                             <div class="col-xs-6 ">
                                 <button type="submit" class="btn btn-success" onclick="submitTryit()" id="submitBTN">
                                     <span class="glyphicon glyphicon-send"></span> 点击运行
                                 </button>
                             </div>
                         </div>
-
                 </div>
-
                 <div class="panel-body">
 			<textarea class="form-control" id="textareaCode" style="min-height:500px;width: 526px;" name="textareaCode" th:text="${code}" th:if="${not #strings.isEmpty(code)}">import java.sql.*;
  public class Test {
 	public static void hello(){
 		System.out.println("hello ");
 	}
-}</textarea>
-                    <textarea class="form-control" id="textareaCode" style="min-height:500px;width: 526px;" name="textareaCode" th:if="${#strings.isEmpty(code)}">import java.sql.*;
+}</textarea><textarea class="form-control" id="textareaCode" style="min-height:500px;width: 526px;" name="textareaCode" th:if="${#strings.isEmpty(code)}">import java.sql.*;
  public class Test {
 	public static void hello(){
 		System.out.println("hello ");
 	}
-}</textarea>
-                </div>
-            </div>
-        </div>
-        </form>
+}</textarea></div></div></div></form>
 
 
 

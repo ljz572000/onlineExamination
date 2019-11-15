@@ -30,7 +30,6 @@
     <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-
 <body>
 
 <div class="container">
@@ -42,9 +41,9 @@
         <nav>
             <ul class="nav nav-justified">
                 <li><a href="" th:href="@{/tea/index}">首页</a></li>
-                <li class="active"><a href="#">出题</a></li>
+                <li><a href="" th:href="@{/tea/commitquestion}">出题</a></li>
                 <li><a href="" th:href="@{/tea/commitpaper}">出卷</a></li>
-                <li><a href="" th:href="@{/tea/lookpaper}">查看学生考卷</a></li>
+                <li class="active"><a href="#">查看学生考卷</a></li>
                 <li><a href="" th:href="@{/tea/scoreexport}">成绩批量导出</a></li>
 <!--                <li><a href="" th:href="@{/tea/lookscore}">查看成绩</a></li>-->
                 <li><a href="" th:href="@{/tea/repairwd}">修改密码</a></li>
@@ -53,68 +52,59 @@
         </nav>
     </div>
 
+<table class="table table-striped" style="margin-top: 27px;">
 
-    <!--    <form class="pt-2" action="" th:action="@{/tea/commitquestions}" method="post" role="form">-->
-    <!--        <br>-->
-    <!--        <h3 class="text-center"> 欢迎使用本系统 </h3>-->
-    <!--        <hr class="text-center"></hr>-->
-    <!--        <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>-->
-    <!--        <div>-->
-    <!--            <input type="text" placeholder="请输入编号" class="form-control" name="id" required>-->
-    <!--            <br>-->
-    <!--            <input type="password" placeholder="请输入密码" class="form-control" name="password" required/>-->
-    <!--            <br>-->
-    <!--            <select name="user_type" class="form-control" required>-->
-    <!--                <option value="students">学生</option>-->
-    <!--                <option value="teachers">教师</option>-->
-    <!--                <option value="admins">管理员</option>-->
-    <!--            </select>-->
-    <!--            <br>-->
-    <!--            <div class="text-center">-->
-    <!--                <input type="submit" value="登录" class="btn btn-primary mb-5 w-100 font-weight-bolder"/>-->
-    <!--            </div>-->
-    <!--        </div>-->
-    <!--    </form>-->
+    <tbody>
+    <tr>
+        <th>第一题代码</th>
+        <td th:utext="${sscore['code_0']}">1</td>
+    </tr>
+    <tr>
+        <th>第一题运行结果</th>
+        <td th:utext="${sscore['content_0']}">Mark</td>
+    </tr>
+    <tr>
+        <th>第二题代码</th>
+        <th scope="row" th:utext="${sscore['code_1']}">1</th>
+    </tr>
+    <tr>
+        <th>第二题运行结果</th>
+        <td th:utext="${sscore['content_1']}">Mark</td>
+    </tr>
+    <tr>
+        <th>第三题代码</th>
+        <th scope="row" th:utext="${sscore['code_2']}">1</th>
 
-    <table class="table table-striped" style="margin-top: 27px;">
-        <tbody>
-        <tr>
-            <td>题目描述</td>
-        </tr>
-        <tr>
-            <td th:text="${question.content}">题目描述</td>
-        </tr>
-        <tr>
-            <td>程序输入说明</td>
-        </tr>
-        <tr>
-            <td th:text="${question.inputrule}">题目描述</td>
-        </tr>
-        <tr>
-            <td>程序输出说明</td>
-        </tr>
-        <tr>
-            <td th:text="${question.outputrule}">题目描述</td>
-        </tr>
-        <tr>
-            <td>程序输入样例</td>
-        </tr>
-        <tr>
-            <td th:text="${question.inputexample}">题目描述</td>
-        </tr>
-        <tr>
-            <td>程序输出样例</td>
-        </tr>
-        <tr>
-            <td th:text="${question.outputexample}">题目描述</td>
-        </tr>
-        </tbody>
-    </table>
-
-
-
-
-
+    </tr>
+    <tr>
+        <th>第三题运行结果</th>
+        <td th:utext="${sscore['content_2']}">Mark</td>
+    </tr>
+    <tr>
+        <th>第四题代码</th>
+        <th scope="row" th:utext="${sscore['code_3']}">1</th>
+    </tr>
+    <tr>
+        <th>第四题运行结果</th>
+        <td th:utext="${sscore['content_3']}">Mark</td>
+    </tr>
+    <tr>
+        <th>第五题代码</th>
+        <th scope="row" th:utext="${sscore['code_4']}">1</th>
+    </tr>
+    <tr>
+        <th>第五题运行结果</th>
+        <td th:utext="${sscore['content_4']}">Mark</td>
+    </tr>
+    </tbody>
+</table>
+    <form class="form-inline" th:action="@{'/tea/submitsscore/'+${sscore['ssno']}}" method="post">
+        <div class="form-group mx-sm-3 mb-2">
+            <label for="score" class="sr-only">给分</label>
+            <input type="score" class="form-control" id="score" name="score" placeholder="给分">
+        </div>
+        <button type="submit" class="btn btn-primary mb-2">submit</button>
+    </form>
 </div>
 </body>
 </html>

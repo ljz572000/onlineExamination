@@ -34,16 +34,22 @@
 
 <body>
 
+<!--<style>-->
+<!--    body{min-height:300px;padding-top:90px;background: #f6f6f6;}.container{width:98%;padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto}.CodeMirror{min-height:300px;;font-family: Menlo,Monaco,Consolas,"Andale Mono","lucida console","Courier New",monospace;}#textareaCode{}#iframeResult{display: block;overflow: hidden;border:0!important;min-width:100px;width:100%;min-height:300px;background-color:#fff}@media screen and (max-width:768px){#textareaCode{height:300px}.CodeMirror{height:300px;font-family: Menlo,Monaco,Consolas,"Andale Mono","lucida console","Courier New",monospace;}#iframeResult{height:300px}.form-inline{padding:6px 0 2px 0}}.logo h1{background-image:url(/images/logo-domain-white.png);background-repeat:no-repeat;text-indent:-9999px;width:160px;height:39px;margin-top:10px;display:block}-->
+<!--</style>-->
 <div class="container">
-    <div>
+
+    <!-- The justified navigation menu is meant for single line per list item.
+         Multiple lines will require custom code not provided by Bootstrap. -->
+    <div th:fragment="copy">
         <div class="masthead mb-5">
             <h3 class="text-muted">Java代码在线编译及练习系统</h3>
             <nav>
                 <ul class="nav nav-justified">
                     <li><a href="" th:href="@{/student/index}">首页</a></li>
-                    <li class="active"><a href="#">在线练习</a></li>
+                    <li><a href="" th:href="@{/stu/question}">在线练习</a></li>
                     <li><a href="" th:href="@{/stu/testpaper}">查看考试</a></li>
-                    <li><a href="" th:href="@{/stu/lookscore}">查看成绩</a></li>
+                    <li class="active"><a href="#">查看成绩</a></li>
                     <li><a href="" th:href="@{/student/repairpwd}">修改密码</a></li>
                     <li><a href="#" th:href="@{/}">退出系统</a></li>
                 </ul>
@@ -58,20 +64,16 @@
             <table class="table table-light table-hover table-bordered">
                 <thead>
                 <tr>
-                    <th>序</th>
-                    <th>题名</th>
-                    <th>难度</th>
-                    <th>操作</th>
+                    <th>#</th>
+                    <th>考试号</th>
+                    <th>成绩</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="question: ${questions}">
-                    <td th:text="${question['qno']}"></td>
-                    <td th:text="${question['qname']}"></td>
-                    <td th:text="${question['rating']}"></td>
-                    <td>
-                        <a href="" th:href="@{'/stu/content/'+${question['qno']}}">练习</a>
-                    </td>
+                <tr th:each="sscore: ${sscores}">
+                    <td th:text="${sscore['ssno']}"></td>
+                    <td th:text="${sscore['testno']}"></td>
+                    <td th:text="${sscore['score']}"></td>
                 </tr>
                 </tbody>
             </table>

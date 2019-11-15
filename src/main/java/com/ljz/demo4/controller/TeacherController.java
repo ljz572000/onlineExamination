@@ -1,18 +1,26 @@
 package com.ljz.demo4.controller;
 
+import com.alibaba.excel.ExcelWriter;
+import com.alibaba.excel.metadata.Sheet;
+import com.alibaba.excel.support.ExcelTypeEnum;
 import com.ljz.demo4.entity.Question;
+import com.ljz.demo4.entity.Sscore;
 import com.ljz.demo4.entity.Teacher;
 import com.ljz.demo4.entity.Testpaper;
-import com.ljz.demo4.repository.GradeRepo;
-import com.ljz.demo4.repository.QuestionRepository;
-import com.ljz.demo4.repository.TeacherRepository;
-import com.ljz.demo4.repository.TestpaperRepository;
+import com.ljz.demo4.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Controller
 @RequestMapping("/tea")
@@ -26,6 +34,8 @@ public class TeacherController {
     GradeRepo classesRepository;
 @Autowired
 TeacherRepository teacherRepository;
+@Autowired
+SscoreRepo sscoreRepo;
 
 
     @PostMapping("/commitquestions")
@@ -172,6 +182,114 @@ TeacherRepository teacherRepository;
         }
 
         return "Teacher/repairpwd";
+    }
+
+
+    //查看学生考卷
+    @GetMapping("/lookpaper")
+    String lookpaper(Model model){
+
+        List<Testpaper> testpapers = testpaperRepository.findAll();
+        model.addAttribute("Testpaers",testpapers);
+        return "Teacher/lookpaper";
+    }
+
+    @GetMapping("/Browse/{testno}")
+    String browse(Model model,
+                  @PathVariable(value = "testno") Integer testno
+                  ){
+        List<Sscore> sscores = sscoreRepo.findByTestno(testno);
+        model.addAttribute("sscores",sscores);
+        return "Teacher/browsepaper";
+    }
+    @GetMapping("/givesscore/{ssno}")
+    String givesscore(Model model,
+                  @PathVariable(value = "ssno") Integer ssno
+                  ){
+        Sscore sscore = sscoreRepo.findBySsno(ssno);
+        model.addAttribute("sscore",sscore);
+        return "Teacher/givesscore";
+    }
+
+    @PostMapping("/submitsscore/{ssno}")
+    String submitsscore(Model model,
+                        @PathVariable(value = "ssno") Integer ssno,
+                        @RequestParam("score") Double score){
+
+        Sscore s = sscoreRepo.findBySsno(ssno);
+        s.setScore(score);
+        sscoreRepo.save(s);
+        return browse(model,s.getTestno());
+
+    }
+
+    @GetMapping("/scoreexport")
+    String scoreexport(Model model){
+        List<Testpaper> testpapers = testpaperRepository.findAll();
+        model.addAttribute("Testpaers",testpapers);
+        return "Teacher/scoreexport";
+    }
+
+//参考easyexcel 写法
+    @GetMapping("/export/{testno}")
+    String export(
+            @PathVariable(value = "testno") Integer testno,
+            HttpServletRequest request, HttpServletResponse response
+    ) throws IOException {
+
+        ServletOutputStream out = response.getOutputStream();
+        response.setContentType("multipart/form-data");
+        response.setCharacterEncoding("utf-8");
+        response.setHeader("Content-disposition", "attachment;filename="+testno+".xlsx");
+        ExcelWriter writer = new ExcelWriter(out, ExcelTypeEnum.XLSX, true);
+        String fileName = new String(("UserInfo " + new SimpleDateFormat("yyyy-MM-dd").format(new Date()))
+                .getBytes(), "UTF-8");
+        Sheet sheet1 = new Sheet(1, 0);
+        sheet1.setSheetName("第一个sheet");
+
+        //设置列宽 设置每列的宽度
+        Map columnWidth = new HashMap();
+        columnWidth.put(0,1000);columnWidth.put(1,5000);columnWidth.put(2,1000);columnWidth.put(3,1000);
+        sheet1.setColumnWidthMap(columnWidth);
+        sheet1.setHead(createTestListStringHead());
+        //or 设置自适应宽度
+        //sheet1.setAutoWidth(Boolean.TRUE);
+        writer.write1(createTestListObject(testno), sheet1);
+
+        writer.finish();
+        out.close();
+        return "Teacher/scoreexport";
+    }
+
+    public static List<List<String>> createTestListStringHead(){
+        //写sheet3  模型上没有注解，表头数据动态传入
+        List<List<String>> head = new ArrayList<List<String>>();
+        List<String> headCoulumn1 = new ArrayList<String>();
+        List<String> headCoulumn2 = new ArrayList<String>();
+        List<String> headCoulumn3 = new ArrayList<String>();
+
+        headCoulumn1.add("考试号");
+        headCoulumn2.add("学生学号");
+        headCoulumn3.add("考试分数");
+
+        head.add(headCoulumn1);
+        head.add(headCoulumn2);
+        head.add(headCoulumn3);
+        return head;
+    }
+    public List<List<Object>> createTestListObject(Integer testno) {
+        List<List<Object>> object = new ArrayList<List<Object>>();
+        List<Sscore> sscores = sscoreRepo.findByTestno(testno);
+        for (Sscore s:
+                sscores) {
+            List<Object> da = new ArrayList<Object>();
+            da.add(s.getTestno());
+            da.add(s.getSno());
+            da.add(s.getScore());
+            object.add(da);
+        }
+
+        return object;
     }
 }
 

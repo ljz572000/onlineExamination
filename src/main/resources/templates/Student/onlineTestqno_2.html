@@ -44,7 +44,7 @@
     <div class="masthead mb-5">
         <h3 class="text-muted text-center" >考试时间：1:00</h3>
 
-        <a href="" th:href="@{/stu/testpaper}" class="btn btn-primary btn-block" style="
+        <a href="" th:href="@{/stu/exit}" class="btn btn-primary btn-block" style="
     margin-top: 21px;
     margin-bottom: 21px;
 "> 结束考试 </a>
@@ -67,34 +67,34 @@
             <table class="table table-light table-hover table-bordered">
                 <tbody>
                 <tr>
-                    <td>题目描述</td>
+                    <td >题目描述</td>
                 </tr>
                 <tr>
-                    <td></td>
+                    <td th:text="${session.q_1.getContent()}">题目描述</td>
                 </tr>
                 <tr>
-                    <td>程序输入说明</td>
+                    <td >程序输入说明</td>
                 </tr>
                 <tr>
-                    <td ></td>
+                    <td th:text="${session.q_1.getInputrule()}">程序输入说明</td>
                 </tr>
                 <tr>
                     <td>程序输出说明</td>
                 </tr>
                 <tr>
-                    <td ></td>
+                    <td th:text="${session.q_1.getOutputrule()}">程序输出说明</td>
                 </tr>
                 <tr>
                     <td>程序输入样例</td>
                 </tr>
                 <tr>
-                    <td ></td>
+                    <td th:text="${session.q_1.getInputexample()}">程序输入样例</td>
                 </tr>
                 <tr>
                     <td>程序输出样例</td>
                 </tr>
                 <tr>
-                    <td ></td>
+                    <td th:text="${session.q_1.getOutputexample()}">程序输出样例</td>
                 </tr>
                 </tbody>
             </table>
@@ -104,7 +104,7 @@
     <div class="row mt-5" style="
     margin-top: 27px;">
 
-        <form class="form-inline" th:action="@{/stu/runcode}" method="post">
+        <form class="form-inline" th:action="@{/stu/test_runcode/2}" method="post">
             <div class="col-sm-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -123,7 +123,7 @@
                     </div>
 
                     <div class="panel-body">
-			<textarea class="form-control" id="textareaCode1" style="min-height:500px;width: 526px;" name="textareaCode" th:text="${code}" th:if="${not #strings.isEmpty(code)}">import java.sql.*;
+			<textarea class="form-control" id="textareaCode1" style="min-height:500px;width: 526px;" name="textareaCode" th:text="${session.codelist[1]}">import java.sql.*;
  public class Test {
 	public static void hello(){
 		System.out.println("hello ");
@@ -146,7 +146,7 @@
                 </div>
                 <div class="panel-body">
                     <div id="iframewrapper" style="min-height:500px">
-                        <p style="color: red" th:utext="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
+                        <p  th:utext="${session.contentlist[1]}"></p>
                     </div>
                 </div>
             </div>

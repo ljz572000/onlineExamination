@@ -49,13 +49,14 @@
                     <li><a href="" th:href="@{/student/index}">首页</a></li>
                     <li><a href="" th:href="@{/stu/question}">在线练习</a></li>
                     <li class="active"><a href="#">查看考试</a></li>
+                    <li><a href="" th:href="@{/stu/lookscore}">查看成绩</a></li>
                     <li><a href="" th:href="@{/student/repairpwd}">修改密码</a></li>
                     <li><a href="#" th:href="@{/}">退出系统</a></li>
                 </ul>
             </nav>
         </div>
     </div>
-
+    <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
 
     <main role="main" class="container" style="
     margin-top: 27px;">
@@ -81,8 +82,7 @@
                     <td th:text="${testpaper['enddate']}"></td>
                     <td th:text="${testpaper['testtime']}"></td>
                     <td>
-<!--                        <a href="" th:href="@{'/stu/content/'+${question['qno']}}">练习</a>-->
-                        <a href="" th:href="@{'/stu/starttest/'+${testpaper['testno']}}">进入考试</a>
+                            <a href="" th:href="@{'/stu/starttest/'+${testpaper['testno']}}">进入考试</a>
                     </td>
                 </tr>
                 </tbody>

@@ -5,13 +5,9 @@
     <title>Java代码在线编译及练习系统</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <!--    <link rel="shortcut icon" href="images/favicon.ico" th:href="@{/}">-->
-    <!--    <script src="" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
-    <script th:href="@{/webjars/jquery/3.4.1/jquery.slim.min.js}"></script>
-    <!--    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>-->
-    <link rel="stylesheet" href="css/bootstrap.css" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.css}">
-    <script src="js/bootstrap.js" th:href="@{/webjars/bootstrap/4.3.1/js/bootstrap.js}"></script>
-
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.slim.min.js"></script>
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.js"></script>
 </head>
 <body>
 <div>
@@ -19,7 +15,7 @@
         <h1 class="pl-lg-4 pt-lg-4">Java代码在线编译及练习系统</h1>
     </div>
 </div>
-<div style="background: url('http://brg.byu.edu/wp-content/uploads/2018/01/videoblocks-abstract-background-with-blue-molecule-structure-low-poly-4k-motion-graphics_shwtbi4_thumbnail-full01-e1525369683646.png');">
+<div class="login-bg" style="background: url('http://brg.byu.edu/wp-content/uploads/2018/01/videoblocks-abstract-background-with-blue-molecule-structure-low-poly-4k-motion-graphics_shwtbi4_thumbnail-full01-e1525369683646.png');">
     <div class="container pt-5 pb-5 mt-3">
         <div class="row pl-5 pt-3 pb-3">
             <div class="col-lg-8 pl-2">1</div>
@@ -30,10 +26,11 @@
                     <hr class="text-center"></hr>
                     <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
                     <div>
-                        <input type="text" placeholder="请输入编号" class="form-control" name="id" required>
+                        <input type="text" placeholder="20160750" class="form-control" name="id" required>
                         <br>
-                        <input type="password" placeholder="请输入密码" class="form-control" name="password" required/>
+                        <input type="password"  placeholder="20160750" class="form-control" name="password" required/>
                         <br>
+                        使用该账号学生、管理员、教师均可登录
                         <select name="user_type" class="form-control" required>
                             <option value="students">学生</option>
                             <option value="teachers">教师</option>

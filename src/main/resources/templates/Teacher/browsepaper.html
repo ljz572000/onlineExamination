@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,7 +22,7 @@
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src=".https://v3.bootcss.com/assets/js/ie-emulation-modes-warning.js"></script>
+    <script src="https://v3.bootcss.com/assets/js/ie-emulation-modes-warning.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -30,7 +30,6 @@
     <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-
 <body>
 
 <div class="container">
@@ -41,55 +40,40 @@
         <h3 class="text-muted">Java代码在线编译及练习系统</h3>
         <nav>
             <ul class="nav nav-justified">
-                <li><a href="" th:href="@{/student/index}">首页</a></li>
-                <li><a href="" th:href="@{/stu/question}">在线练习</a></li>
-                <li><a href="" th:href="@{/stu/testpaper}">查看考试</a></li>
-                <li><a href="" th:href="@{/stu/lookscore}">查看成绩</a></li>
-                <li class="active"><a href="#">修改密码</a></li>
+                <li><a href="" th:href="@{/tea/index}">首页</a></li>
+                <li><a href="" th:href="@{/tea/commitquestion}">出题</a></li>
+                <li><a href="" th:href="@{/tea/commitpaper}">出卷</a></li>
+                <li class="active"><a href="#">查看学生考卷</a></li>
+                <li><a href="" th:href="@{/tea/scoreexport}">成绩批量导出</a></li>
+<!--                <li><a href="" th:href="@{/tea/lookscore}">查看成绩</a></li>-->
+                <li><a href="" th:href="@{/tea/repairwd}">修改密码</a></li>
                 <li><a href="#" th:href="@{/}">退出系统</a></li>
             </ul>
         </nav>
     </div>
+<table class="table table-striped" style="margin-top: 27px;">
 
-    <div class="row" style="
-    margin-top: 27px;">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">考试号</th>
+        <th scope="col">学号</th>
+        <th scope="col">分数</th>
+    </tr>
+    </thead>
 
-        <div class="col-5">
+    <tbody>
+    <tr th:each="sscore: ${sscores}">
+        <th scope="row" th:text="${sscore['ssno']}">1</th>
+        <td th:text="${sscore['testno']}">Mark</td>
+        <td th:text="${sscore['sno']}">Mark</td>
+        <td th:text="${sscore['score']}">Mark</td>
+        <td><a href="" th:href="@{'/tea/givesscore/'+${sscore['ssno']}}" class="btn btn-primary">查看并给分</a></td>
+    </tr>
+    </tbody>
 
-            <form action="" th:action="@{/repwd}" method="post" class="bg-light" style="
-    padding-right: 287px;
-    padding-left: 301px;
-">
-                <input type=hidden name="opttype" value="repair"/>
-                <strong style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></strong>
-                <br>
-                <label for="newpwd">新密码</label>
-                <input required="" id="newpwd" name="pwd1" class="form-control" type="password" placeholder="输入新密码">
-                <br>
-                <label for="repwd">确认新密码</label>
-                <input required="" id="repwd" name="pwd2" class="form-control" type="password" placeholder="确认新密码">
-                <br>
-                <div class="text-center">
-                    <input type="submit" value="提交" class="btn btn-primary" style=" width: 30vh;
-    height: 6vh;
-    font-weight: bold;
-    font-size: 3vh;"/>
-                </div>
-                <br>
-            </form>
+</table>
 
-        </div>
-
-    </div>
-
-</div> <!-- /container -->
-
-
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="https://v3.bootcss.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+</div>
 </body>
 </html>
-
-
-
-

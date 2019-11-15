@@ -18,5 +18,10 @@ public class Sscore {
     private String code_2;
     private String code_3;
     private String code_4;
+    private String content_0;
+    private String content_1;
+    private String content_2;
+    private String content_3;
+    private String content_4;
     private Double score;
 }

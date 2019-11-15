@@ -44,8 +44,8 @@
                 <li class="active"><a href="#">首页</a></li>
                 <li><a href="" th:href="@{/stu/question}">在线练习</a></li>
                 <li><a href="" th:href="@{/stu/testpaper}">查看考试</a></li>
+                <li><a href="" th:href="@{/stu/lookscore}">查看成绩</a></li>
                 <li><a href="" th:href="@{/student/repairpwd}">修改密码</a></li>
-                <li><a href="" th:href="@{/stu/done}">已做试题查看</a></li>
                 <li><a href="#" th:href="@{/}">退出系统</a></li>
             </ul>
         </nav>
@@ -55,7 +55,7 @@
     <div class="jumbotron">
         <h1>Java</h1>
         <p class="lead">本系统拥有海量Java习题，欢迎广大师生使用本系统！</p>
-        <p><a class="btn btn-lg btn-success" href="#" role="button">在线练习</a></p>
+        <p><a class="btn btn-lg btn-success" href="#" th:href="@{/stu/question}" role="button">在线练习</a></p>
     </div>
 
     <!-- Example row of columns -->
@@ -65,19 +65,19 @@
             <!--      <p class="text-danger">As of v9.1.2, Safari exhibits a bug in which resizing your browser horizontally causes rendering errors in the justified nav that are cleared upon refreshing.</p>-->
             <p class="text-danger">请在规定地时间内完成上级考试</p>
             <p>发布时间 ： 2019-7-5</p>
-            <p><a class="btn btn-primary" href="#" role="button">查看考试细节 &raquo;</a></p>
+            <p><a class="btn btn-primary" href="#" th:href="@{/stu/testpaper}" role="button">查看考试细节 &raquo;</a></p>
         </div>
         <div class="col-lg-4">
             <h2>2019 Java 期中考试通知</h2>
             <p class="text-danger">请在规定地时间内完成上级考试</p>
             <p>发布时间 ： 2019-7-4</p>
-            <p><a class="btn btn-primary" href="#" role="button">查看考试细节 &raquo;</a></p>
+            <p><a class="btn btn-primary" href="#" th:href="@{/stu/testpaper}" role="button">查看考试细节 &raquo;</a></p>
         </div>
         <div class="col-lg-4">
             <h2>2019 JavaEE 期末考试通知</h2>
             <p class="text-danger">请在规定地时间内完成上级考试</p>
             <p>发布时间 ： 2019-7-3</p>
-            <p><a class="btn btn-primary" href="#" role="button">查看考试细节 &raquo;</a></p>
+            <p><a class="btn btn-primary" href="#" th:href="@{/stu/testpaper}" role="button">查看考试细节 &raquo;</a></p>
         </div>
     </div>
 

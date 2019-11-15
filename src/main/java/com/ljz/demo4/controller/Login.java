@@ -25,21 +25,16 @@ public class Login {
 
     @PostMapping(value = "/login")
     public String login(
-            @RequestParam("id") String id,
+            @RequestParam("id") Integer id,
             @RequestParam("password") String password,
             @RequestParam("user_type") String user_type,
             Map<String, Object> map,
             HttpSession session) {
 
-
-        if (id == "" || password == "") {
-            map.put("msg", "用户名密码为空");
-            return "login";
-        }
-
         if (user_type.equals("students")) {
 
-            Student stu = studentRepository.findBySno(Integer.parseInt(id));
+//            Student stu = studentRepository.findBySno(Integer.parseInt(id));
+            Student stu = studentRepository.findBySno(id);
             if (stu == null){
                 map.put("msg", "输入的用户不存在");
                 return "login";
@@ -56,7 +51,8 @@ public class Login {
 
 
         } else if (user_type.equals("teachers")) {
-            Teacher tea = teacherRepository.findByTno(Integer.parseInt(id));
+//            Integer.parseInt(id)
+            Teacher tea = teacherRepository.findByTno(id);
             if (tea == null){
                 map.put("msg", "输入的用户不存在");
                 return "login";
@@ -76,7 +72,7 @@ public class Login {
         } else {
 
 
-            Admin admin = adminRepository.findByAno(Integer.parseInt(id));
+            Admin admin = adminRepository.findByAno(id);
 
             if (admin == null){
                 map.put("msg", "输入的用户不存在");

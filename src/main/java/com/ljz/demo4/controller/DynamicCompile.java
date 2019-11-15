@@ -1,5 +1,6 @@
 package com.ljz.demo4.controller;
 
+
 import javax.tools.*;
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
@@ -12,6 +13,8 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static java.util.Locale.CHINESE;
 
 public class DynamicCompile {
 
@@ -32,7 +35,8 @@ public class DynamicCompile {
         //把诊断收集器作为变量加入编译器中
         //文件管理器将使用给定的诊断侦听器来生成任何非致命的诊断程序。
         //将使用适当的例外情况发出致命错误信号。
-        JavaFileManager javaFileManager = new MyJavaFileManager(compiler.getStandardFileManager(collector, null, null));
+        JavaFileManager javaFileManager =
+                new MyJavaFileManager(compiler.getStandardFileManager(collector, CHINESE, null));
 
 
 
@@ -45,6 +49,7 @@ public class DynamicCompile {
         //java.util.regex.Matcher[pattern=class\s+([$_a-zA-Z][$_a-zA-Z0-9]*)\s* region=0,122 lastmatch=]
         String cls;
         // 声明类名
+
 
 
         if (matcher.find()) {

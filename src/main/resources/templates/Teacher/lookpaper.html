@@ -46,7 +46,7 @@
                 <li><a href="" th:href="@{/tea/commitpaper}">出卷</a></li>
                 <li class="active"><a href="#">查看学生考卷</a></li>
                 <li><a href="" th:href="@{/tea/scoreexport}">成绩批量导出</a></li>
-                <li><a href="" th:href="@{/tea/lookscore}">查看成绩</a></li>
+<!--                <li><a href="" th:href="@{/tea/lookscore}">查看成绩</a></li>-->
                 <li><a href="" th:href="@{/tea/repairwd}">修改密码</a></li>
                 <li><a href="#" th:href="@{/}">退出系统</a></li>
             </ul>
@@ -55,34 +55,29 @@
 
 
       <table class="table table-striped" style="margin-top: 27px;">
-        <thead>
+
+          <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">考试名</th>
+            <th scope="col">开始日期</th>
+            <th scope="col">结束日期</th>
+            <th scope="col">考试时长</th>
+            <th scope="col">阅卷</th>
         </tr>
         </thead>
+
         <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
+        <tr th:each="testpaper: ${Testpaers}">
+            <th scope="row" th:text="${testpaper['testno']}">1</th>
+            <td th:text="${testpaper['testname']}">Mark</td>
+            <td th:text="${testpaper['startdate']}">Mark</td>
+            <td th:text="${testpaper['enddate']}">Otto</td>
+            <td th:text="${testpaper['testtime']}">Otto</td>
+            <td><a href="" th:href="@{'/tea/Browse/'+${testpaper['testno']}}" class="btn btn-primary">阅卷</a></td>
         </tr>
         </tbody>
+
     </table>
 
 
